@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="">Nhập a:</label>
+        <input class="A" type="text">
+        <br>
+        <label for="">Nhập b:</label>
+        <input class="B" type="text">
+        <br>
+        <label for="">Tổng các số nguyên tố là:</label>
+        <span class="kq">0</span>
+        <br>
+        <button type="submit">Tính</button>
+    </form>
+
+    <script>
+        let isSNT = (n) => {
+            if (n < 2) {
+                return false;
+            }
+
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        let tongSNT = (a, b) => {
+            let sum = 0;
+            for (let i = a; i <= b; i++) {
+                if (isSNT(i)) {
+                    sum += i;
+                }
+            }
+            return sum;
+        };
+
+        let form = document.querySelector('form');
+        let kq = document.querySelector(".kq");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let num_a = parseInt(document.querySelector(".A").value);
+            let num_b = parseInt(document.querySelector(".B").value);
+            kq.innerHTML = tongSNT(num_a, num_b);
+        });
+
+    </script>
+</body>
+
+</html>
